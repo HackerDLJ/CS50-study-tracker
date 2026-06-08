@@ -1,0 +1,46 @@
+{% extends "layout.html" %}
+
+{% block title %}History{% endblock %}
+{% block nav_history %}active{% endblock %}
+
+{% block main %}
+<div class="container">
+
+    <header class="history-header">
+        <h1 class="history-title">Study History</h1>
+        <p class="history-sub">A complete log of every session you&apos;ve recorded.</p>
+    </header>
+
+    <div class="card history-card">
+        <div class="table-responsive">
+            <table class="table history-table mb-0">
+                <thead>
+                    <tr>
+                        <th scope="col">Date</th>
+                        <th scope="col">Subject</th>
+                        <th scope="col" class="text-right">Minutes</th>
+                        <th scope="col">Notes</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for entry in entries %}
+                    <tr>
+                        <td class="cell-date">{{ entry.date }}</td>
+                        <td><span class="subject-pill">{{ entry.subject }}</span></td>
+                        <td class="text-right cell-minutes">{{ entry.minutes }}</td>
+                        <td class="cell-notes">{{ entry.notes }}</td>
+                    </tr>
+                    {% else %}
+                    <tr>
+                        <td colspan="4" class="empty-state">
+                            No sessions logged yet. Head to the Dashboard to record your first one.
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+</div>
+{% endblock %}

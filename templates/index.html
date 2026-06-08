@@ -1,0 +1,67 @@
+{% extends "layout.html" %}
+
+{% block title %}Dashboard{% endblock %}
+{% block nav_dashboard %}active{% endblock %}
+
+{% block main %}
+<div class="container">
+
+    <!-- Hero / total metric -->
+    <section class="hero-jumbotron jumbotron">
+        <div class="hero-content">
+            <p class="hero-eyebrow">Your progress so far</p>
+            <h1 class="hero-metric">
+                {{ total_minutes if total_minutes is not none else 0 }}
+                <span class="hero-unit">Minutes</span>
+            </h1>
+            <p class="hero-sub">Total study time logged across all subjects.</p>
+        </div>
+    </section>
+
+    <!-- Log session card -->
+    <section class="row justify-content-center">
+        <div class="col-lg-8">
+            <div class="card log-card">
+                <div class="card-body">
+                    <h2 class="log-card-title">Log a study session</h2>
+                    <p class="log-card-sub">Keep your momentum going. Record what you worked on.</p>
+
+                    <form action="/" method="post" class="log-form">
+                        <div class="form-group">
+                            <label for="subject">Subject</label>
+                            <select class="form-control custom-control-field" id="subject" name="subject" required>
+                                <option value="" disabled selected>Choose a subject</option>
+                                <option>C</option>
+                                <option>Arrays</option>
+                                <option>Algorithms</option>
+                                <option>Memory</option>
+                                <option>Data Structures</option>
+                                <option>Python</option>
+                                <option>SQL</option>
+                                <option>Flask</option>
+                                <option>HTML, CSS, JavaScript</option>
+                                <option>Final Project</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="minutes">Minutes</label>
+                            <input type="number" min="1" class="form-control custom-control-field" id="minutes"
+                                   name="minutes" placeholder="e.g. 45" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="notes">Notes</label>
+                            <textarea class="form-control custom-control-field" id="notes" name="notes" rows="4"
+                                      placeholder="What did you accomplish?"></textarea>
+                        </div>
+
+                        <button type="submit" class="btn btn-log btn-block">Log Session</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+</div>
+{% endblock %}
