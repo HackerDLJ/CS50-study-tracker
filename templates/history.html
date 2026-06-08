@@ -23,12 +23,12 @@
                     </tr>
                 </thead>
                 <tbody>
-                    {% for entry in entries %}
+                    {% for row in rows %}
                     <tr>
-                        <td class="cell-date">{{ entry.date }}</td>
-                        <td><span class="subject-pill">{{ entry.subject }}</span></td>
-                        <td class="text-right cell-minutes">{{ entry.minutes }}</td>
-                        <td class="cell-notes">{{ entry.notes }}</td>
+                        <td class="cell-date">{{ row.date }}</td>
+                        <td><span class="subject-pill">{{ row.subject }}</span></td>
+                        <td class="text-right cell-minutes">{{ row.minutes }}</td>
+                        <td class="cell-notes">{{ row.notes if row.notes else "—" }}</td>
                     </tr>
                     {% else %}
                     <tr>

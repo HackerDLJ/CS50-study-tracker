@@ -11,7 +11,7 @@
         <div class="hero-content">
             <p class="hero-eyebrow">Your progress so far</p>
             <h1 class="hero-metric">
-                {{ total_minutes if total_minutes is not none else 0 }}
+                {{ total if total is not none else 0 }}
                 <span class="hero-unit">Minutes</span>
             </h1>
             <p class="hero-sub">Total study time logged across all subjects.</p>
@@ -26,7 +26,7 @@
                     <h2 class="log-card-title">Log a study session</h2>
                     <p class="log-card-sub">Keep your momentum going. Record what you worked on.</p>
 
-                    <form action="/" method="post" class="log-form">
+                    <form action="/add" method="post" class="log-form">
                         <div class="form-group">
                             <label for="subject">Subject</label>
                             <select class="form-control custom-control-field" id="subject" name="subject" required>
