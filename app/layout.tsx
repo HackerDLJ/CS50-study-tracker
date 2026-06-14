@@ -10,8 +10,8 @@ const geistMono = Geist_Mono({
 })
 
 export const metadata: Metadata = {
-  title: 'v0 App',
-  description: 'Created with v0',
+  title: 'CS50 Study Tracker',
+  description: 'Track your study sessions and monitor progress',
   generator: 'v0.app',
   icons: {
     icon: [
