@@ -3,11 +3,11 @@
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { ThemeSwitcher } from '@/components/theme-switcher';
-import { useAuth } from '@/components/auth-provider';
+import { useSupabaseAuth } from '@/components/supabase-auth-provider';
 
 export function Navbar() {
   const pathname = usePathname();
-  const { user, loginWithGithub, logout } = useAuth();
+  const { user, loginWithGithub, logout, loading } = useSupabaseAuth();
 
   const isActive = (href: string) => pathname === href;
 
@@ -41,18 +41,38 @@ export function Navbar() {
               >
                 History
               </Link>
+              <Link
+                href="/analytics"
+                className={`text-sm font-medium transition-colors ${
+                  isActive('/analytics')
+                    ? 'text-primary'
+                    : 'text-muted-foreground hover:text-foreground'
+                }`}
+              >
+                Analytics
+              </Link>
+              <Link
+                href="/goals"
+                className={`text-sm font-medium transition-colors ${
+                  isActive('/goals')
+                    ? 'text-primary'
+                    : 'text-muted-foreground hover:text-foreground'
+                }`}
+              >
+                Goals
+              </Link>
             </div>
             <div className="flex items-center gap-3">
               <ThemeSwitcher />
-              {user ? (
+              {!loading && user ? (
                 <div className="flex items-center gap-3">
                   <div className="flex items-center gap-2">
                     <img
-                      src={user.avatar}
-                      alt={user.name}
+                      src={user.user_metadata?.avatar_url || 'https://api.github.com/users/octocat/avatar_url'}
+                      alt={user.user_metadata?.full_name || 'User'}
                       className="h-8 w-8 rounded-full border border-border"
                     />
-                    <span className="text-sm font-medium text-foreground hidden sm:inline">{user.name}</span>
+                    <span className="text-sm font-medium text-foreground hidden sm:inline">{user.user_metadata?.full_name || user.email}</span>
                   </div>
                   <button
                     onClick={logout}
