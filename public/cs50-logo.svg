@@ -1,0 +1,7 @@
+<svg viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg">
+  <!-- Black rounded square background -->
+  <rect width="512" height="512" rx="110" fill="#000000"/>
+  
+  <!-- CS50 text in white -->
+  <text x="256" y="310" font-family="Arial, sans-serif" font-size="180" font-weight="bold" fill="#ffffff" text-anchor="middle">CS50</text>
+</svg>
