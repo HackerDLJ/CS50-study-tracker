@@ -8,7 +8,6 @@ interface AuthContextType {
   user: User | null;
   loading: boolean;
   loginWithGithub: () => Promise<void>;
-  loginWithGoogle: () => Promise<void>;
   logout: () => Promise<void>;
   session: any;
 }
@@ -64,22 +63,6 @@ export function SupabaseAuthProvider({ children }: { children: ReactNode }) {
     }
   };
 
-  const loginWithGoogle = async () => {
-    try {
-      const { error } = await supabase.auth.signInWithOAuth({
-        provider: 'google',
-        options: {
-          redirectTo:
-            process.env.NEXT_PUBLIC_DEV_SUPABASE_REDIRECT_URL ||
-            `${window.location.origin}/auth/callback`,
-        },
-      });
-      if (error) throw error;
-    } catch (error) {
-      console.error('Error logging in with Google:', error);
-    }
-  };
-
   const logout = async () => {
     try {
       const { error } = await supabase.auth.signOut();
@@ -92,7 +75,7 @@ export function SupabaseAuthProvider({ children }: { children: ReactNode }) {
   };
 
   return (
-    <AuthContext.Provider value={{ user, loading, loginWithGithub, loginWithGoogle, logout, session }}>
+    <AuthContext.Provider value={{ user, loading, loginWithGithub, logout, session }}>
       {children}
     </AuthContext.Provider>
   );
